@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IMPULSIVO.MX - Calculadora de Precios</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        .gradient-bg { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+        .card-shadow { box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+        .price-card { transition: all 0.3s ease; }
+        .price-card:hover { transform: translateY(-2px); box-shadow: 0 15px 35px rgba(0,0,0,0.15); }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <!-- Header -->
+    <header class="gradient-bg text-white py-8">
+        <div class="container mx-auto px-6">
+            <div class="flex items-center justify-between mb-4">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <img src="https://drive.google.com/uc?export=view&id=1xPbfzpa7g9Svi9_wjPmt9s9RRJk5MSO1" 
+                         alt="IMPULSIVO.MX Logo" 
+                         class="w-16 h-16 rounded-full mr-4 object-cover bg-white"
+                         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center mr-4" style="display: none;">
+                        <span class="text-2xl font-bold text-purple-600">I</span>
+                    </div>
+                    <div>
+                        <h1 class="text-2xl font-bold">IMPULSIVO.MX</h1>
+                        <p class="text-sm opacity-75">@impulsivo.mx</p>
+                    </div>
+                </div>
+                <!-- Instagram Link -->
+                <a href="https://www.instagram.com/impulsivo.mx" target="_blank" class="bg-white bg-opacity-20 hover:bg-opacity-30 px-4 py-2 rounded-lg transition-all flex items-center">
+                    <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                    </svg>
+                    Síguenos
+                </a>
+            </div>
+            <div class="text-center">
+                <h2 class="text-3xl font-bold mb-2">📸 Calculadora de Precios</h2>
+                <p class="text-xl opacity-90">Cotiza tus servicios fotográficos automáticamente</p>
+            </div>
+        </div>
+    </header>
+
+    <div class="container mx-auto px-6 py-8">
+        <div class="grid lg:grid-cols-3 gap-8">
+            <!-- Panel de Categorías -->
+            <div class="lg:col-span-2">
+                <div class="bg-white rounded-xl card-shadow p-6">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6">Selecciona tus Servicios</h2>
+                    
+                    <!-- Mensaje de confirmación -->
+                    <div class="bg-green-50 border-l-4 border-green-400 p-4 mb-6">
+                        <div class="flex">
+                            <div class="flex-shrink-0">
+                                <svg class="h-5 w-5 text-green-400" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                </svg>
+                            </div>
+                            <div class="ml-3">
+                                <p class="text-sm text-green-700">
+                                    <strong>¡Sistema completo!</strong> Tu calculadora está lista con las 10 categorías + extras. Selecciona los servicios que necesites y obtén tu cotización automática.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Categorías (se llenarán dinámicamente) -->
+                    <div id="categories-container" class="space-y-6">
+                        <div class="text-center py-12 text-gray-500">
+                            <svg class="mx-auto h-16 w-16 text-gray-300 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                            </svg>
+                            <h3 class="text-lg font-medium mb-2">Esperando categorías...</h3>
+                            <p>Comparte la primera categoría con sus precios para comenzar</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Panel de Cotización -->
+            <div class="lg:col-span-1">
+                <div class="bg-white rounded-xl card-shadow p-6 sticky top-8">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">💰 Tu Cotización</h3>
+                    
+                    <!-- Lista de servicios seleccionados -->
+                    <div id="selected-services" class="space-y-3 mb-6 min-h-[200px]">
+                        <div class="text-center py-8 text-gray-400">
+                            <svg class="mx-auto h-12 w-12 text-gray-300 mb-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                            </svg>
+                            <p class="text-sm">Selecciona servicios para ver tu cotización</p>
+                        </div>
+                    </div>
+
+                    <!-- Total -->
+                    <div class="border-t pt-4">
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="text-lg font-semibold text-gray-700">Total:</span>
+                            <span id="total-price" class="text-2xl font-bold text-purple-600">$0</span>
+                        </div>
+                        
+                        <!-- Botones de acción -->
+                        <div class="space-y-3">
+                            <button id="clear-all" class="w-full bg-gray-100 hover:bg-gray-200 text-gray-700 font-medium py-2 px-4 rounded-lg transition-colors" onclick="clearAllServices()">
+                                🗑️ Limpiar Todo
+                            </button>
+                            <button id="download-quote" class="w-full gradient-bg hover:opacity-90 text-white font-medium py-3 px-4 rounded-lg transition-opacity" onclick="downloadQuote()">
+                                📄 Descargar Cotización
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Estado global de la aplicación
+        let selectedServices = [];
+        let categories = [];
+
+        // Función para agregar una nueva categoría
+        function addCategory(categoryName, services) {
+            const category = {
+                id: categories.length + 1,
+                name: categoryName,
+                services: services
+            };
+            categories.push(category);
+            renderCategories();
+        }
+
+        // Renderizar todas las categorías
+        function renderCategories() {
+            const container = document.getElementById('categories-container');
+            
+            if (categories.length === 0) {
+                container.innerHTML = `
+                    <div class="text-center py-12 text-gray-500">
+                        <svg class="mx-auto h-16 w-16 text-gray-300 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                        </svg>
+                        <h3 class="text-lg font-medium mb-2">Esperando categorías...</h3>
+                        <p>Comparte la primera categoría con sus precios para comenzar</p>
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = categories.map(category => `
+                <div class="border border-gray-200 rounded-lg p-4">
+                    <h4 class="text-lg font-semibold text-gray-800 mb-3">${category.name}</h4>
+                    <div class="grid gap-3">
+                        ${category.services.map(service => `
+                            <div class="price-card bg-gray-50 hover:bg-purple-50 border border-gray-200 hover:border-purple-300 rounded-lg p-4 cursor-pointer transition-all" onclick="toggleService('${category.id}', '${service.name}', ${service.price})">
+                                <div class="flex justify-between items-start mb-2">
+                                    <div class="flex items-start flex-1">
+                                        <input type="checkbox" id="service-${category.id}-${service.name}" class="mr-3 mt-1 text-purple-600 rounded" ${isServiceSelected(category.id, service.name) ? 'checked' : ''}>
+                                        <div class="flex-1">
+                                            <span class="font-medium text-gray-800 block">${service.name}</span>
+                                            ${service.details ? `<p class="text-sm text-gray-600 mt-1">${service.details}</p>` : ''}
+                                        </div>
+                                    </div>
+                                    <span class="text-purple-600 font-bold text-lg ml-4">$${service.price.toLocaleString()}</span>
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Verificar si un servicio está seleccionado
+        function isServiceSelected(categoryId, serviceName) {
+            return selectedServices.some(s => s.categoryId == categoryId && s.name === serviceName);
+        }
+
+        // Toggle servicio
+        function toggleService(categoryId, serviceName, price) {
+            const existingIndex = selectedServices.findIndex(s => s.categoryId == categoryId && s.name === serviceName);
+            
+            if (existingIndex > -1) {
+                selectedServices.splice(existingIndex, 1);
+            } else {
+                selectedServices.push({
+                    categoryId: categoryId,
+                    name: serviceName,
+                    price: price
+                });
+            }
+            
+            updateQuote();
+            renderCategories(); // Re-render para actualizar checkboxes
+        }
+
+        // Actualizar cotización
+        function updateQuote() {
+            const servicesContainer = document.getElementById('selected-services');
+            const totalElement = document.getElementById('total-price');
+            
+            if (selectedServices.length === 0) {
+                servicesContainer.innerHTML = `
+                    <div class="text-center py-8 text-gray-400">
+                        <svg class="mx-auto h-12 w-12 text-gray-300 mb-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                        </svg>
+                        <p class="text-sm">Selecciona servicios para ver tu cotización</p>
+                    </div>
+                `;
+                totalElement.textContent = '$0';
+                return;
+            }
+
+            servicesContainer.innerHTML = selectedServices.map(service => `
+                <div class="flex justify-between items-center bg-purple-50 p-3 rounded-lg">
+                    <span class="text-sm font-medium text-gray-700">${service.name}</span>
+                    <div class="flex items-center">
+                        <span class="text-purple-600 font-bold mr-2">$${service.price.toLocaleString()}</span>
+                        <button onclick="removeService('${service.categoryId}', '${service.name}')" class="text-red-500 hover:text-red-700">
+                            <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+
+            const total = selectedServices.reduce((sum, service) => sum + service.price, 0);
+            totalElement.textContent = `$${total.toLocaleString()}`;
+        }
+
+        // Remover servicio específico
+        function removeService(categoryId, serviceName) {
+            selectedServices = selectedServices.filter(s => !(s.categoryId == categoryId && s.name === serviceName));
+            updateQuote();
+            renderCategories();
+        }
+
+        // Limpiar todos los servicios
+        function clearAllServices() {
+            selectedServices = [];
+            updateQuote();
+            renderCategories();
+        }
+
+        // Descargar cotización
+        function downloadQuote() {
+            if (selectedServices.length === 0) {
+                alert('Selecciona al menos un servicio para generar la cotización');
+                return;
+            }
+
+            const total = selectedServices.reduce((sum, service) => sum + service.price, 0);
+            const date = new Date().toLocaleDateString('es-ES');
+            
+            let content = `COTIZACIÓN - IMPULSIVO.MX\n`;
+            content += `Fecha: ${date}\n\n`;
+            content += `SERVICIOS SELECCIONADOS:\n`;
+            content += `${'='.repeat(40)}\n`;
+            
+            selectedServices.forEach(service => {
+                content += `${service.name.padEnd(25)} $${service.price.toLocaleString().padStart(10)}\n`;
+            });
+            
+            content += `${'='.repeat(40)}\n`;
+            content += `TOTAL: $${total.toLocaleString()}\n\n`;
+            content += `¡Gracias por confiar en IMPULSIVO.MX!\n`;
+            content += `Instagram: @impulsivo.mx\n`;
+            content += `Contacto: [Tu información de contacto]`;
+
+            const blob = new Blob([content], { type: 'text/plain' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `Cotizacion_IMPULSIVO_${date.replace(/\//g, '-')}.txt`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            window.URL.revokeObjectURL(url);
+        }
+
+        // Inicializar la aplicación
+        document.addEventListener('DOMContentLoaded', function() {
+            // Agregar la primera categoría: Fotografía de Retrato
+            addCategory('📷 Fotografía de Retrato', [
+                { name: 'Fotografía individual (headshot)', price: 1000, details: '30-45 mins, 1 fondo, 3 fotos editadas, entrega digital' },
+                { name: 'Retrato artístico', price: 2000, details: '1 hora, iluminación creativa, asesoría, 5 fotos editadas' },
+                { name: 'Fotografía familiar', price: 2750, details: 'Hasta 5 personas, 1 hora, 10 fotos, selección + edición' },
+                { name: 'Fotografía infantil / bebés', price: 3250, details: 'Incluye props, 1.5 horas, ambiente controlado, 8-10 fotos' },
+                { name: 'Fotografía de embarazo', price: 2900, details: '1-2 vestuarios, asesoría de poses, 10 fotos editadas' },
+                { name: 'Fotografía de parejas', price: 2400, details: '1 hora, 1 locación, 10 fotos editadas, props opcionales' }
+            ]);
+
+            // Agregar segunda categoría: Fotografía de Eventos
+            addCategory('🎉 Fotografía de Eventos', [
+                { name: 'Bodas (cobertura básica)', price: 11500, details: '6-8 horas, 1 fotógrafo, 100-200 fotos editadas, USB + galería web' },
+                { name: 'Bodas (cobertura premium)', price: 24000, details: '2 fotógrafos, cobertura todo el día, álbum impreso, sesión previa' },
+                { name: 'Cumpleaños infantiles', price: 5000, details: '2-3 horas, fotos del evento, pastel, invitados, entrega digital' },
+                { name: 'Quinceañeras', price: 9500, details: '4-6 horas, sesión previa, ceremonia, fiesta, álbum opcional' },
+                { name: 'Aniversarios', price: 6000, details: '3-5 horas, pareja + invitados, cobertura emocional y social' },
+                { name: 'Graduaciones (evento grupal)', price: 5250, details: '2-4 horas, entrega por alumno (extra), fotos grupales e individuales' },
+                { name: 'Eventos corporativos', price: 7500, details: '2-5 horas, branding, retratos, fotos del ambiente y networking' }
+            ]);
+
+            // Agregar tercera categoría: Fotografía Comercial / Publicitaria
+            addCategory('💼 Fotografía Comercial / Publicitaria', [
+                { name: 'Productos e-commerce / catálogos', price: 3500, details: 'Hasta 10 productos, fondo blanco, edición básica, entrega digital' },
+                { name: 'Fotografía gastronómica', price: 4250, details: '1-2 horas, 5-10 platillos, iluminación y estilismo incluido' },
+                { name: 'Moda (lookbooks, modelaje)', price: 7000, details: '2-4 horas, dirección de poses, 15-30 fotos editadas' },
+                { name: 'Marcas personales / branding', price: 4500, details: '1-2 locaciones, lifestyle + retratos, hasta 15 fotos editadas' }
+            ]);
+
+            // Agregar cuarta categoría: Fotografía Corporativa
+            addCategory('🏢 Fotografía Corporativa', [
+                { name: 'Retratos corporativos (headshots)', price: 1000, details: 'Fondo neutro, edición básica, 2 fotos por persona' },
+                { name: 'Fotografía de equipo / plantilla', price: 4500, details: '1-2 horas, foto grupal + retratos individuales' },
+                { name: 'Fotografía de instalaciones', price: 3750, details: '15-20 fotos, interiores y exteriores, edición de color y encuadre' },
+                { name: 'Cobertura de conferencias/eventos', price: 8500, details: '3-6 horas, fotos generales, ponentes, público y ambiente' }
+            ]);
+
+            // Agregar quinta categoría: Fotografía Inmobiliaria y de Arquitectura
+            addCategory('🏠 Fotografía Inmobiliaria y de Arquitectura', [
+                { name: 'Interiores y exteriores (venta/renta)', price: 3750, details: 'Hasta 20 fotos, iluminación natural, retoque de color' },
+                { name: 'Desarrollos inmobiliarios', price: 7000, details: 'Varias unidades, zonas comunes, tomas desde dron (opcional)' },
+                { name: 'Tour virtual 360° o video', price: 5750, details: 'Recorrido digital, con o sin dron, edición incluida' }
+            ]);
+
+            // Agregar sexta categoría: Producción de Video
+            addCategory('🎬 Producción de Video', [
+                { name: 'Clips promocionales (30-60s)', price: 5000, details: 'Grabación + edición básica, música libre de derechos' },
+                { name: 'Videos corporativos', price: 11000, details: 'Guión, entrevistas, tomas de apoyo, edición profesional' },
+                { name: 'Videos para redes sociales', price: 3750, details: 'Formato vertical, dinámico, de 15s a 1 minuto' },
+                { name: 'Behind the scenes', price: 4500, details: 'Video tipo documental, edición emocional o musical' }
+            ]);
+
+            // Agregar séptima categoría: Servicios de Edición y Retoque
+            addCategory('✨ Servicios de Edición y Retoque', [
+                { name: 'Retoque profesional', price: 325, details: 'Corrección de piel, luz, fondo, color y detalles (por foto)' },
+                { name: 'Montajes / composiciones digitales', price: 1250, details: 'Edición creativa o artística, fondos digitales, efectos' },
+                { name: 'Restauración de fotos antiguas', price: 800, details: 'Eliminación de manchas, grietas, reconstrucción parcial' }
+            ]);
+
+            // Agregar octava categoría: Servicios de Impresión y Entrega
+            addCategory('🖼️ Servicios de Impresión y Entrega', [
+                { name: 'Álbum fotográfico personalizado', price: 2100, details: '20-40 páginas, portada rígida, diseño incluido' },
+                { name: 'Impresiones (papel, lienzo, acrílico)', price: 800, details: 'Tamaños de 5x7 hasta 24x36 pulgadas (c/u)' },
+                { name: 'Marcos y cuadros personalizados', price: 1150, details: 'Variedad de materiales y tamaños' },
+                { name: 'USB personalizado o galería digital', price: 525, details: 'USB con logo + estuche, o acceso web con contraseña' }
+            ]);
+
+            // Agregar novena categoría: Fotografía para Redes Sociales y Marketing Digital
+            addCategory('📱 Fotografía para Redes Sociales y Marketing Digital', [
+                { name: 'Sesiones temáticas para redes', price: 3500, details: 'Branding, props, hasta 15 fotos, edición para redes' },
+                { name: 'Fotografía de estilo de vida (lifestyle)', price: 4250, details: 'Locación natural, uso de producto/servicio, enfoque narrativo' },
+                { name: 'Contenido para influencers o marcas', price: 5000, details: 'Pack mensual o por sesión, distintos formatos, edición y estrategia' }
+            ]);
+
+            // Agregar décima categoría: Temáticas Especiales
+            addCategory('🎭 Temáticas Especiales', [
+                { name: 'Mini sesiones temáticas (Navidad, etc.)', price: 1850, details: '30 minutos, 5 fotos, decorado especial, props' },
+                { name: 'Smash cake (1er año)', price: 2750, details: 'Pastel, decoración, 1 hora, 10 fotos editadas' },
+                { name: 'Book de 15 o 18 años', price: 6500, details: '2-3 locaciones, cambios de ropa, 20-30 fotos' },
+                { name: 'Pre-boda / post-boda', price: 5250, details: 'Locación especial, 1-2 horas, 15 fotos editadas' }
+            ]);
+
+            // Agregar categoría de Extras
+            addCategory('⭐ Servicios Extras', [
+                { name: 'Hora extra', price: 1000, details: 'Por hora adicional de sesión o evento' },
+                { name: 'Entrega exprés', price: 750, details: 'Entrega en 24-48 horas' },
+                { name: 'Video corto del evento o sesión', price: 2000, details: 'Video resumen de 1-2 minutos' },
+                { name: 'Maquillaje profesional', price: 900, details: 'Para sesiones de retrato o embarazo' },
+                { name: 'Locación especial / renta de espacio', price: 1500, details: 'Según costos externos y disponibilidad' }
+            ]);
+            
+            renderCategories();
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'97d23f8ea363aec5',t:'MTc1NzU0MjE1MS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
